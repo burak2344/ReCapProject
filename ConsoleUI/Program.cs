@@ -19,29 +19,54 @@ namespace ConsoleUI
 		private static void CarDetailDto()
 		{
 			CarManager carManager = new CarManager(new EfCarDal());
-
-			foreach (var car in carManager.GetCarDetails())
+			var result = carManager.GetCarDetails();
+			if (result.Success)
 			{
-				Console.WriteLine(car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+				foreach (var car in result.Data)
+				{
+					Console.WriteLine(car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+				}
+				Console.WriteLine(result.Message);
+			}
+			else
+			{
+				Console.WriteLine(result.Message);
 			}
 		}
 
 		private static void GetBrandName()
 		{
 			BrandManager brandManager = new BrandManager(new EfBrandDal());
-			foreach (var brand in brandManager.GetAll())
+			var result = brandManager.GetAll();
+			if (result.Success)
 			{
-				Console.WriteLine(brand.BrandName);
+				foreach (var brand in result.Data)
+				{
+					Console.WriteLine(brand.BrandName);
+				}
+				Console.WriteLine(result.Message);
+			}
+			else
+			{
+				Console.WriteLine(result.Message);
 			}
 		}
 
 		private static void CarDailyPrice()
 		{
 			CarManager carManager = new CarManager(new EfCarDal());
-
-			foreach (var car in carManager.GetByDailyPrice(0))
+			var result = carManager.GetByDailyPrice(0);
+			if (result.Success)
 			{
-				Console.WriteLine(car.CarName);
+				foreach (var car in result.Data)
+				{
+					Console.WriteLine(car.CarName);
+				}
+				Console.WriteLine(result.Message);
+			}
+			else
+			{
+				Console.WriteLine(result.Message);
 			}
 		}
 	}
