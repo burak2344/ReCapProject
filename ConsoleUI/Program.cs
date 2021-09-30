@@ -13,6 +13,7 @@ namespace ConsoleUI
 			//CarDailyPrice();
 			//GetBrandName();
 			//CarDetailDto();
+			UserTest();
 
 		}
 
@@ -69,5 +70,27 @@ namespace ConsoleUI
 				Console.WriteLine(result.Message);
 			}
 		}
+
+		private static void UserTest()
+		{
+			UserManager userManager = new UserManager(new EfUserDal());
+			var result2 = userManager.Add(new User { FirstName = "Ad", LastName = "Soyad", Email = "ad-soyad@hotmail.com", Password = "1" });
+			Console.WriteLine(result2.Message);
+			var result = userManager.GetAll();
+			if (result.Success)
+			{
+				foreach (var user in result.Data)
+				{
+					Console.WriteLine(user.FirstName + " " + user.LastName + " " + user.Email + " " + user.Password);
+
+				}
+				Console.WriteLine(result.Message);
+			}
+			else
+			{
+				Console.WriteLine(result.Message);
+			}
+		}	
+
 	}
 }
