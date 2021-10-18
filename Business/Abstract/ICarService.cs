@@ -18,6 +18,8 @@ namespace Business.Abstract
 		IDataResult<Car> GetById(int id);
 		IDataResult<List<Car>> GetAllByBrand(int id);
 		IDataResult<List<Car>> GetByDailyPrice(decimal max);
+		IDataResult<List<Car>> GetCarsByBrandId(int id);
+		IDataResult<List<Car>> GetCarsByColorId(int id);
 		IDataResult<List<CarDetailsDto>> GetCarDetails();
 	}
 }
